@@ -1,0 +1,18 @@
+# docker-compose up -d --build
+# docker-compose exec app bash
+
+version: '3'
+services: 
+    app:
+        build: .
+        tty: true
+        privileged: true
+        environment:
+            # use X11 forwarding
+            - DISPLAY=host.docker.internal:0
+        volumes:
+            - ./:/workdir/
+
+# npm install の時
+# https://github.com/npm/npm/issues/17268#issuecomment-310167614
+# sudo npm install -g electron --unsafe-perm=true --allow-root
